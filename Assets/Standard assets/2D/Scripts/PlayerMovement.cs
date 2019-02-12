@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour {
 
     
         _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Min(_rb.velocity.y, 18f));
-    Debug.Log(_rb.velocity);
+
         if (isChangeDirection) {
             var moveScale = transform.localScale;
             moveScale.x *= -1;
