@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerUserMovement : MonoBehaviour {
     private PlayerMovement _movement;
@@ -27,9 +26,9 @@ public class PlayerUserMovement : MonoBehaviour {
     }
 
 
-    private bool IsChangeDirection(float x) {
-        if (x == 0f) return false;
-        var newDir = Mathf.Sign(x);
+    private bool IsChangeDirection(float xShift) {
+        if (xShift == 0f) return false;
+        var newDir = Mathf.Sign(xShift);
         if (newDir == _moveDir) return false;
         _moveDir = newDir;
         return true;

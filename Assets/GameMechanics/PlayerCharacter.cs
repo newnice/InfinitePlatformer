@@ -1,51 +1,69 @@
 ﻿using UnityEngine;
 
-public class PlayerCharacter : MonoBehaviour
-{
-    private Rigidbody2D rb;
+public class PlayerCharacter : MonoBehaviour {
+    [SerializeField] private HUD _hud;
+    private Rigidbody2D _rb;
 
-    private int lives = GameplayConstants.STARTING_LIVES;
-    private int distanceScore = 0;
-    private int enemyScore = 0;
-	
-	void Start ()
-    {
-        rb = this.GetComponent<Rigidbody2D>();
+    private int _lives = GameplayConstants.STARTING_LIVES;
+    private int _distanceScore = 0;
+    private int _enemyScore = 0;
+
+    void Start() {
+        _rb = GetComponent<Rigidbody2D>();
+        UpdateScore();
+        _hud.UpdateLives(_lives);
+        _hud.UpdateEnemies(_enemyScore);
     }
 
-    void Update()
-    {
-        distanceScore = Mathf.Max(distanceScore, (int)this.transform.position.x);
-        int totalScore = distanceScore * GameplayConstants.SCORE_DISTANCE_MULTIPLIER + enemyScore * GameplayConstants.SCORE_ENEMY_MULTIPLIER;
+    void Update() {
+        UpdateScore();
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.tag == GameplayConstants.TAG_KillZone)
-        {
+
+    private void UpdateScore() {
+        _distanceScore = Mathf.Max(_distanceScore, (int) transform.position.x);
+        int totalScore = _distanceScore * GameplayConstants.SCORE_DISTANCE_MULTIPLIER +
+                         _enemyScore * GameplayConstants.SCORE_ENEMY_MULTIPLIER;
+        _hud.UpdateScore(totalScore);
+    }
+
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.CompareTag(GameplayConstants.TAG_KillZone)) {
             KillCharacter();
         }
     }
 
-    private void KillCharacter()
-    {
-        lives -= 1;
+    protected void OnCollisionEnter2D(Collision2D other) {
+        CheckEnemy(other);
+    }
 
-        if (lives > 0)
-        {
-            rb.MovePosition(rb.position + GameplayConstants.RESPAWN_HEIGHT * Vector2.up);
-            rb.velocity = Vector2.zero;
+    private void CheckEnemy(Collision2D other) {
+        if (!other.gameObject.CompareTag("Enemy")) return;
+        if (Vector2.Dot(Vector2.up, other.relativeVelocity.normalized) > 0.8) {
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            if (enemy.Squash()) {
+                _enemyScore++;
+                _hud.UpdateEnemies(_enemyScore);
+            }
         }
-        else
-        {
+    }
+
+    private void KillCharacter() {
+        _lives--;
+        _hud.UpdateLives(_lives);
+
+        if (_lives > 0) {
+            _rb.MovePosition(_rb.position + GameplayConstants.RESPAWN_HEIGHT * Vector2.up);
+            _rb.velocity = Vector2.zero;
+        }
+        else {
             GameOver();
         }
     }
 
-    private void GameOver()
-    {
-        rb.isKinematic = true;
-        rb.velocity = Vector2.zero;
+    private void GameOver() {
+        _rb.isKinematic = true;
+        _rb.velocity = Vector2.zero;
         Debug.Log("Game Over!");
     }
 }
