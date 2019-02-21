@@ -27,6 +27,6 @@ public class EnemyManager : MonoBehaviour {
 
         var enemy = _enemies.First(e => !e.isActiveAndEnabled);
        
-        enemy.Renew(_camera.ViewportToWorldPoint(new Vector2(Random.Range(0.5f, 1.0f), 0.9f)));
+        enemy.Renew(_camera.ViewportToWorldPoint(new Vector2(Random.Range(0.5f, 1.5f), 1f)));
     }
 }

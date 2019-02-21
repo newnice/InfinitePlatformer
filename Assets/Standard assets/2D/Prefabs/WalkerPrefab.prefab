@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6137518750563292003}
   - component: {fileID: 8379765012263394982}
   - component: {fileID: 1496552967}
+  - component: {fileID: 748048398195742744}
   m_Layer: 0
   m_Name: WalkerPrefab
   m_TagString: Enemy
@@ -134,3 +135,17 @@ MonoBehaviour:
   _originColor: {r: 0, g: 0, b: 0, a: 0}
   VelocityScale: 2
   CollisionCheckRadius: 0.1
+--- !u!114 &748048398195742744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496552966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032ac8f8f16847dfa5ef12dab41a11cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: 1a17b0a14d2a76f48b39e5893292e57e, type: 3}
+  _maxSize: 10
