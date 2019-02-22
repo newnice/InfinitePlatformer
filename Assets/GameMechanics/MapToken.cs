@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Obsolete]
 public class MapToken : MonoBehaviour {
     private MiniMapUpdater _mapUpdater;
 

@@ -13,8 +13,8 @@ public class GameplayConstants : ScriptableObject
     public const float START_DISTANCE = 4.5f;
 
     public const int ENEMY_POOL_SIZE = 10;
-    public const int LAYER_Enemy = 8;
-    public const int LAYER_Radar = 12;
+
+    public const int LAYER_MINI_MAP = 8;
     public const int MAXIMUM_SECTIONS = 6;
     public const int SCORE_DISTANCE_MULTIPLIER = 5;
     public const int SCORE_ENEMY_MULTIPLIER = 50;

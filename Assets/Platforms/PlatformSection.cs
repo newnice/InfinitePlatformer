@@ -49,7 +49,7 @@ public class PlatformSection : MonoBehaviour
         
         foreach (BoxCollider2D col in colliders)
         {
-            if (col.gameObject.layer == GameplayConstants.LAYER_Radar)
+            if (col.gameObject.layer == GameplayConstants.LAYER_MINI_MAP)
             {
                 continue;
             }

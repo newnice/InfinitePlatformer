@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
+[Obsolete]
 public class MiniMapUpdater : MonoBehaviour {
     [SerializeField] private float _maxXScale = 1.5f;
     [SerializeField] private float _maxYScale = 1.5f;
