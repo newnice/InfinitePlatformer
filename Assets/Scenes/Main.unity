@@ -691,6 +691,8 @@ MonoBehaviour:
   _livesText: {fileID: 635612789}
   _enemiesText: {fileID: 513947766}
   _scoreText: {fileID: 1459693788}
+  _language:
+    Name: English
 --- !u!1 &635612787
 GameObject:
   m_ObjectHideFlags: 0
