@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour {
-    [SerializeField] private HUD _hud;
+    [SerializeField] private HUD _hud=null;
     private Rigidbody2D _rb;
 
     private int _lives = GameplayConstants.STARTING_LIVES;
@@ -28,7 +28,7 @@ public class PlayerCharacter : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        if (col.CompareTag(GameplayConstants.TAG_KillZone)) {
+        if (col.CompareTag(TagNames.KILLZONE)) {
             KillCharacter();
         }
     }
@@ -38,7 +38,7 @@ public class PlayerCharacter : MonoBehaviour {
     }
 
     private void CheckEnemy(Collision2D other) {
-        if (!other.gameObject.CompareTag("Enemy")) return;
+        if (!other.gameObject.CompareTag(TagNames.ENEMY)) return;
         if (Vector2.Dot(Vector2.up, other.relativeVelocity.normalized) > 0.8) {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             if (enemy.Squash()) {

@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour {
-    [SerializeField] private Text _livesText;
-    [SerializeField] private Text _enemiesText;
-    [SerializeField] private Text _scoreText;
+    [SerializeField] private Text _livesText = null;
+    [SerializeField] private Text _enemiesText = null;
+    [SerializeField] private Text _scoreText = null;
 
-    [SerializeField] private GameLanguage _language;
+    [SerializeField] private GameLanguage _language = GameLanguage.Empty;
 
 
     public void UpdateLives(int lives) {

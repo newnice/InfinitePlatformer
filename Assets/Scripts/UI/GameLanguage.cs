@@ -7,6 +7,7 @@ using UnityEngine;
 public struct GameLanguage {
     public string Name;
 
+    public static GameLanguage Empty= new GameLanguage("Empty");
     public GameLanguage(string name) {
         Name = name;
     }

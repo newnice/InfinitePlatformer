@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MiniMapUpdater : MonoBehaviour {
     [SerializeField] private float _maxXScale = 1.5f;
     [SerializeField] private float _maxYScale = 1.5f;
-    [SerializeField] private Camera _camera;
+    [SerializeField] private Camera _camera=null;
     private Image _mapCanvas;
     private Vector3 _mapSize;
 

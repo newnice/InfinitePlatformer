@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MapToken : MonoBehaviour {
     private MiniMapUpdater _mapUpdater;
 
-    [SerializeField] private Sprite _sprite;
+    [SerializeField] private Sprite _sprite=null;
     [SerializeField] private float _maxSize = 5;
     private GameObject _object;
     private RectTransform _rectTransform;

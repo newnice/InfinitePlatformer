@@ -803,7 +803,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -64}
+  m_Offset: {x: 0, y: -128}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -814,7 +814,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 640, y: 128}
+  m_Size: {x: 640, y: 256}
   m_EdgeRadius: 0
 --- !u!114 &744494968
 MonoBehaviour:
@@ -1201,7 +1201,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -12, y: 0}
+  m_Offset: {x: -17, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1473,9 +1473,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c85a8300254442a8f3a6358ae78d7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 1496552967, guid: 9e8d911893617dc4d8b8b6466b204b85, type: 3}
-  MaxPoolSize: 5
-  MaxActiveEnemies: 3
+  _enemyPrefab: {fileID: 2763432709754217716, guid: cbaa8cd346fb8dc4fb4a21773f63e16e,
+    type: 3}
+  MaxPoolSize: 10
+  MaxActiveEnemies: 6
 --- !u!4 &2134441253
 Transform:
   m_ObjectHideFlags: 0

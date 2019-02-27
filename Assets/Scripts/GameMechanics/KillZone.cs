@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class KillZone : MonoBehaviour
 {
@@ -10,7 +8,7 @@ public class KillZone : MonoBehaviour
 	void Update ()
     {
         Vector3 newPosition = mainCamera.transform.position;
-        newPosition.y = killDepth;
-        this.transform.position = newPosition;
+        newPosition.y= killDepth;
+        transform.position = newPosition;
 	}
 }

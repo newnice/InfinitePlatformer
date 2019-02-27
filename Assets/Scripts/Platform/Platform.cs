@@ -2,7 +2,7 @@
 
 public class Platform : MonoBehaviour {
     void Awake() {
-        tag = GameplayConstants.TAG_Ground; // If you get an error here, create a Tag in Unity called "Ground".
+        tag = TagNames.GROUND; // If you get an error here, create a Tag in Unity called "Ground".
         //See the GameplayConstants.cs file for other required Tags and Layers.
 
         var spriteRenderer = GetComponent<SpriteRenderer>();

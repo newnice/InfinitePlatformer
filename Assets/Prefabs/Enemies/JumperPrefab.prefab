@@ -1,21 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &2763432709754217716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5404978027879016229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e4adbb2b50c84941b81c2fb22153d9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _originColor: {r: 0.81193227, g: 0.9056604, b: 0.06407974, a: 1}
-  VelocityScale: 2
-  CollisionCheckRadius: 0.1
---- !u!1001 &2581455688439102525
+--- !u!1001 &6832522050904708699
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -25,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 7552952897728142104, guid: cad0d76663c4c1c4b91c3f0ecafc46e8,
         type: 3}
       propertyPath: m_Name
-      value: WalkerPrefab
+      value: EnemyPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 7552952897728142109, guid: cad0d76663c4c1c4b91c3f0ecafc46e8,
         type: 3}
@@ -82,18 +67,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6588162165075531843, guid: cad0d76663c4c1c4b91c3f0ecafc46e8,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7552952897728142111, guid: cad0d76663c4c1c4b91c3f0ecafc46e8, type: 3}
-    - {fileID: 6588162165075531843, guid: cad0d76663c4c1c4b91c3f0ecafc46e8, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cad0d76663c4c1c4b91c3f0ecafc46e8, type: 3}
---- !u!1 &5404978027879016229 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7552952897728142104, guid: cad0d76663c4c1c4b91c3f0ecafc46e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2581455688439102525}
-  m_PrefabAsset: {fileID: 0}
