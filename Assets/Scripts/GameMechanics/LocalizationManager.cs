@@ -9,18 +9,24 @@ public class LocalizationManager : MonoBehaviour {
     public static IEnumerable<GameLanguage> AvailableLanguages { get; } = _localization.Keys;
 
     public static string TranslateFor(GameLanguage language, string key) {
+        return TranslateOrDefault(language, key, "Not found");
+    }
+
+    public static string TranslateOrDefault(GameLanguage language, string key, string defaultValue) {
         if (!_localization.TryGetValue(language, out var dictionary)) {
             Debug.LogError($"Language {language} not found");
-            return "Not found";
+            return defaultValue;
         }
 
         if (!dictionary.TryGetValue(key, out var localName)) {
             Debug.LogError($"Localization for {key} not found in dictionary {language}");
+            return defaultValue;
         }
 
         return localName;
     }
 
+    
     static LocalizationManager() {
         if (TryGetLocalizationFiles(out var files))
             InitLocalizationDictionaries(files);
