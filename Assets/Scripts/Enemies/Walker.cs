@@ -2,23 +2,23 @@
 using UnityEngine;
 
 
-public class Walker : Enemy {
+public class Walker : GroundEnemy {
     private Vector2 _moveDirection;
-    [SerializeField] private float VelocityScale = 2f;
+    [SerializeField] private float ForwardVelocityScale = 2f;
 
 
     private void Start() {
         _moveDirection = Mathf.Sign(Random.Range(-1f, 1f)) * Vector2.left;
     }
 
-    protected void FixedUpdate() {
+    protected virtual void FixedUpdate() {
         if (!onGround) return;
-        Rb.velocity = _moveDirection * VelocityScale;
+        EnemyRigidBody.velocity = _moveDirection * ForwardVelocityScale;
     }
 
     private void ChangeDirection() {
         _moveDirection = -1 * _moveDirection;
-        Rb.velocity = 2 * _moveDirection * VelocityScale;
+        EnemyRigidBody.velocity = 2 * _moveDirection * ForwardVelocityScale;
     }
 
     protected override void OnCollisionEnter2D(Collision2D other) {

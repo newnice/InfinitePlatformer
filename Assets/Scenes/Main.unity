@@ -692,7 +692,7 @@ MonoBehaviour:
   _enemiesText: {fileID: 513947766}
   _scoreText: {fileID: 1459693788}
   _language:
-    Name: English
+    Name: Russian
 --- !u!1 &635612787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,10 +1473,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c85a8300254442a8f3a6358ae78d7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 2763432709754217716, guid: cbaa8cd346fb8dc4fb4a21773f63e16e,
+  _enemyPrefab: {fileID: 5616537670431079321, guid: 287b45ee6b96f104abc291acae2a1694,
     type: 3}
   MaxPoolSize: 10
-  MaxActiveEnemies: 6
+  MaxActiveEnemies: 1
 --- !u!4 &2134441253
 Transform:
   m_ObjectHideFlags: 0

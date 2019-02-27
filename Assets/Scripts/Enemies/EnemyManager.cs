@@ -60,11 +60,12 @@ public class EnemyManager : MonoBehaviour {
     }
 
     private bool TryGenerateNewPosition(out Vector2 enemyPosition) {
-        enemyPosition = new Vector2(Random.Range(1f, 2.5f), 1f);
+        enemyPosition = new Vector2(Random.Range(1f, 2.5f), 1.5f);
         Vector2 startPos = _camera.ViewportToWorldPoint(enemyPosition);
 
 
-        var raycast = Physics2D.RaycastAll(startPos, Vector2.down);
+        var raycast = Physics2D.RaycastAll(startPos, Vector2.down).Where(r=>r.collider.CompareTag(TagNames.GROUND)).ToArray();
+     
         if (raycast != null && raycast.Length > 0) {
             enemyPosition = raycast[Random.Range(0, raycast.Length - 1)].point;
             return true;
