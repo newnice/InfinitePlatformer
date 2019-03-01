@@ -267,7 +267,7 @@ Transform:
   m_LocalScale: {x: 1.0009745, y: 1, z: 1.0009744}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &332694386
 GameObject:
@@ -1212,7 +1212,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 18}
+  m_Size: {x: 15, y: 50}
   m_EdgeRadius: 0
 --- !u!1001 &1771787303
 PrefabInstance:
@@ -1259,7 +1259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194254215070968, guid: a4685a47f52b4204785f5425db38b62f, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1522165857863872, guid: a4685a47f52b4204785f5425db38b62f, type: 3}
       propertyPath: m_TagString
@@ -1473,10 +1473,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c85a8300254442a8f3a6358ae78d7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 5616537670431079321, guid: 287b45ee6b96f104abc291acae2a1694,
-    type: 3}
   MaxPoolSize: 10
-  MaxActiveEnemies: 1
+  MaxActiveEnemies: 3
+  _spawnConf:
+  - _enemyPrefab: {fileID: 2763432709754217716, guid: cbaa8cd346fb8dc4fb4a21773f63e16e,
+      type: 3}
+    isAir: 0
+    _spawnChance: 50
+    _maxHealth: 5
+  - _enemyPrefab: {fileID: 5616537670431079321, guid: 287b45ee6b96f104abc291acae2a1694,
+      type: 3}
+    isAir: 0
+    _spawnChance: 30
+    _maxHealth: 2
+  - _enemyPrefab: {fileID: 2380292190628722050, guid: c81477147e963e64bb2a080d4f56c91b,
+      type: 3}
+    isAir: 0
+    _spawnChance: 20
+    _maxHealth: 3
 --- !u!4 &2134441253
 Transform:
   m_ObjectHideFlags: 0

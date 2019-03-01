@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour {
 
     protected Rigidbody2D EnemyRigidBody => _rb;
 
-    private CircleCollider2D _circleColl;
-    protected CircleCollider2D CircleCollider => _circleColl;
+    private CircleCollider2D _enemyColl;
+    protected CircleCollider2D EnemyCollider => _enemyColl;
     private SpriteRenderer sr;
     [SerializeField] private readonly float DeathVelocityScale = 8f;
     [SerializeField] private Color _originColor = Color.black;
@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour {
     private void Awake() {
         _rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        _circleColl = GetComponent<CircleCollider2D>();
+        _enemyColl = GetComponent<CircleCollider2D>();
         _defaultScale = gameObject.transform.localScale;
     }
 
@@ -30,21 +30,24 @@ public class Enemy : MonoBehaviour {
     }
 
     private void Update() {
-        if (_health <= 0)
+        if (!IsAlive())
             StartCoroutine("DestroyEnemy");
     }
 
     public bool Squash() {
         _health--;
         UpdateSize();
-        return _health <= 0;
+        return !IsAlive();
     }
 
     private void UpdateSize() {
-        if (_health > 0)
+        if (IsAlive())
             gameObject.transform.localScale = _defaultScale + new Vector3(_health, _health, 0);
     }
 
+    public bool IsAlive() {
+        return _health > 0;
+    }
 
     private void BecomeInvisible() {
         gameObject.SetActive(false);
@@ -58,7 +61,7 @@ public class Enemy : MonoBehaviour {
 
 
     protected virtual IEnumerator DestroyEnemy() {
-        _circleColl.isTrigger = true;
+        _enemyColl.isTrigger = true;
         sr.color = Color.gray;
         _rb.velocity = Vector2.down * DeathVelocityScale;
         yield return new WaitForSeconds(1.5f);
@@ -67,7 +70,7 @@ public class Enemy : MonoBehaviour {
 
     public void Renew(Vector2 position, int health) {
         _health = health;
-        _circleColl.isTrigger = false;
+        _enemyColl.isTrigger = false;
         sr.color = _originColor;
 
         gameObject.transform.position = position;
