@@ -9,8 +9,8 @@ namespace Enemies {
 
         private Transform _playerCheck;
 
-        public bool _isTrackPlayer;
-        public Vector2 _playerDirection;
+        private bool _isTrackPlayer;
+        private Vector2 _playerDirection;
 
         protected override void Start() {
             base.Start();
@@ -47,19 +47,11 @@ namespace Enemies {
 
         private void CheckPlayer() {
             var colliders = Physics2D.OverlapCircleAll(_playerCheck.position, _distanceToCheckPlayer);
-            var playerCol = colliders.Where(c => c.CompareTag(TagNames.PLAYER));
-            _isTrackPlayer = playerCol.Count() > 0;
+            var player = colliders.FirstOrDefault(c => c.CompareTag(TagNames.PLAYER));
+            _isTrackPlayer = player != null;
             if (_isTrackPlayer) {
-                var player = playerCol.First();
                 _playerDirection = player.transform.position - _playerCheck.position;
             }
-        }
-
-        private void OnDrawGizmos() {
-            if (_playerCheck == null)
-                return;
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(_playerCheck.position, _distanceToCheckPlayer);
         }
 
         protected override IEnumerator DestroyEnemy() {

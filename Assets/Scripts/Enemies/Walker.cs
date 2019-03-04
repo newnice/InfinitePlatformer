@@ -7,7 +7,8 @@ public class Walker : GroundEnemy {
     [SerializeField] private float ForwardVelocityScale = 2f;
 
 
-    protected virtual void Start() {
+    protected override void Start() {
+        base.Start();
         _moveDirection = Mathf.Sign(Random.Range(-1f, 1f)) * Vector2.left;
     }
 
@@ -28,7 +29,8 @@ public class Walker : GroundEnemy {
         return 2 * _moveDirection * ForwardVelocityScale;
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D other) {
+    protected override void OnCollisionEnter2D(Collision2D other) {
+        base.OnCollisionEnter2D(other);
         CheckObstacle(other);
     }
 

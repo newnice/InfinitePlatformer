@@ -8,6 +8,8 @@ public class GameplayConstants : ScriptableObject {
     public const float SPAWN_ZONE_MINIMUM_WIDTH = 2f;
     public const float START_DISTANCE = 4.5f;
 
+    public const float FLOATING_PRECISION = 0.001f;
+
 
     public const int LAYER_MINI_MAP = 8;
     public const int MAXIMUM_SECTIONS = 6;

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class PlatformSection : MonoBehaviour {
-    internal struct SpawnPoint {
+    public struct SpawnPoint {
         Vector3 center;
         float range;
 
@@ -14,14 +14,16 @@ public class PlatformSection : MonoBehaviour {
         internal Vector3 RandomSpawnPoint() {
             return center + Random.Range(-range, range) * Vector3.right;
         }
+
+        public override string ToString() => $"Point center = {center} range ={range}";
     }
 
     private float leftOffset;
     private float rightOffset;
-    private SpawnPoint[] spawnPoints;
+    public SpawnPoint[] spawnPoints;
 
     private PlatformManager pm;
-    private bool nextPlatformActivated = false;
+    public bool nextPlatformActivated = false;
 
     private void CalculateWidthFromColliders(BoxCollider2D[] colliders) {
         leftOffset = float.MinValue;
@@ -127,17 +129,17 @@ public class PlatformSection : MonoBehaviour {
         return center + rightOffset;
     }
 
-    public Vector3[] GetEnemySpawnPoints(int number) {
+    public Vector3[] GetEnemySpawnPoints() {
         if (spawnPoints.Length < 1) {
             return null;
         }
 
-        Vector3[] returnPoints = new Vector3[number];
+        Vector3[] returnPoints = new Vector3[spawnPoints.Length];
 
-        for (int i = 0; i < number; i++) {
+        for (int i = 0; i < spawnPoints.Length; i++) {
             int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
-            returnPoints[i] = this.gameObject.transform.position + spawnPoints[spawnPointIndex].RandomSpawnPoint();
+            returnPoints[i] = gameObject.transform.position + spawnPoints[spawnPointIndex].RandomSpawnPoint();
         }
 
         return returnPoints;

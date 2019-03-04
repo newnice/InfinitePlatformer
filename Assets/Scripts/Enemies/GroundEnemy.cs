@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Linq;
+using Enemies;
 using UnityEngine;
 
 public abstract class GroundEnemy : Enemy {
-    [SerializeField] private float GravityScale = 2f;
-
     public bool _onGround;
     public bool onGround => _onGround;
 
@@ -28,17 +27,16 @@ public abstract class GroundEnemy : Enemy {
     protected abstract void OnGroundMovement();
 
     protected virtual void OnFall() {
-        EnemyRigidBody.AddForce(Vector2.down * 9.8f * GravityScale);
+        EnemyRigidBody.AddForce(Vector2.down * 9.8f);
     }
 
     private void CheckGroundByRaycast() {
         RaycastHit2D[] rays = new RaycastHit2D[5];
         var rayCount = EnemyCollider.Raycast(Vector2.down, rays);
-        var colliderSize = EnemyCollider.radius * EnemyCollider.transform.localScale.y;
         _onGround = rayCount > 0 && rays.Any(r =>
                         r.collider != null
                         && r.collider.CompareTag(TagNames.GROUND)
-                        && r.distance < colliderSize + 0.1f);
+                        && r.distance < Size.y + 0.1f);
     }
 
     protected override IEnumerator DestroyEnemy() {

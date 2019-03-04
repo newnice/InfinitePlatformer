@@ -166,6 +166,7 @@ MonoBehaviour:
   hardDistanceScale: 1.75
   easyDistance: 100
   hardDistance: 1000
+  _enemyManager: {fileID: 2134441252}
 --- !u!4 &75107495
 Transform:
   m_ObjectHideFlags: 0
@@ -396,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0a230635eb55e41ae1dd2736842546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextPlatformActivated: 0
 --- !u!1001 &571426679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -558,7 +560,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88732224ec034a241a0bd5dfab00dae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isJump: 0
 --- !u!114 &571426687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1473,24 +1474,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c85a8300254442a8f3a6358ae78d7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxPoolSize: 10
-  MaxActiveEnemies: 3
+  _maxPoolSize: 15
   _spawnConf:
   - _enemyPrefab: {fileID: 2763432709754217716, guid: cbaa8cd346fb8dc4fb4a21773f63e16e,
       type: 3}
-    isAir: 0
-    _spawnChance: 50
-    _maxHealth: 5
+    _spawnChance: 1
   - _enemyPrefab: {fileID: 5616537670431079321, guid: 287b45ee6b96f104abc291acae2a1694,
       type: 3}
-    isAir: 0
-    _spawnChance: 30
-    _maxHealth: 2
+    _spawnChance: 1
   - _enemyPrefab: {fileID: 2380292190628722050, guid: c81477147e963e64bb2a080d4f56c91b,
       type: 3}
-    isAir: 0
-    _spawnChance: 20
-    _maxHealth: 3
+    _spawnChance: 1
+  - _enemyPrefab: {fileID: 596029978507807894, guid: faaf6c982a306da4c9871873facf3618,
+      type: 3}
+    _spawnChance: 1
+  - _enemyPrefab: {fileID: 7269792766134000001, guid: edea7211de3a1cd4196224cc8360c61e,
+      type: 3}
+    _spawnChance: 1
+  - _enemyPrefab: {fileID: 7464933785490309016, guid: e0f8ebd09ae09354a8d5e468853e3bb2,
+      type: 3}
+    _spawnChance: 1
+  _maxHealth: 3
 --- !u!4 &2134441253
 Transform:
   m_ObjectHideFlags: 0
