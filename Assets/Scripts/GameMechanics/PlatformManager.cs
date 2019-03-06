@@ -99,7 +99,6 @@ public class PlatformManager : MonoBehaviour {
         var range = jumpScalar * jumpDistance;
         currentEndDistance = newPlatform.MoveAndActivate(currentEndDistance + range);
 
-        Debug.Log($"Distance between Platforms = {currentEndDistance-oldEndDistance}");
         _enemyManager.SpawnAirEnemy(new Vector2(oldEndDistance + range / 2, 8), range, false);
         var spawnPoints = newPlatform.GetEnemySpawnPoints();
         if (spawnPoints != null && spawnPoints.Length > 0)

@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
-
     private Animator _animator;
 
     private Rigidbody2D _rb;
@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour {
     public float _groundCheckRadius = 0.25f;
 
     private Vector2 _playerSize;
+    public Text _velocityText;
+
 
     void Start() {
         _animator = GetComponent<Animator>();
@@ -23,34 +25,34 @@ public class PlayerMovement : MonoBehaviour {
         _playerSize = _collider.size * transform.localScale;
     }
 
-    void FixedUpdate() {
+    void CheckObstacles() {
         var colliders = Physics2D.OverlapCircleAll(_groundCheck.position, _groundCheckRadius);
         _onGround = colliders.Any(c => c.gameObject != gameObject && !c.isTrigger);
-        
-        colliders = Physics2D.OverlapBoxAll(_sideCheck.position, new Vector2(2*_groundCheckRadius,_playerSize.y-_groundCheckRadius), 0);
-       
+
+        colliders = Physics2D.OverlapBoxAll(_sideCheck.position,
+            new Vector2(2 * _groundCheckRadius, _playerSize.y -_groundCheckRadius ), 0);
+
         bool sideCheck = colliders.Any(c => c.gameObject != gameObject && !c.isTrigger);
 
-        _rb.velocity = new Vector2(!sideCheck?_rb.velocity.x:0f, Mathf.Min(_rb.velocity.y, 18f));
+        _rb.velocity = new Vector2(!sideCheck ? _rb.velocity.x : 0f, _rb.velocity.y);
+        _velocityText.text = $"v:{_rb.velocity}";
     }
 
 
-    // Update is called once per frame
     public void Move(float x, bool isJump, bool isChangeDirection) {
         if (isJump && _onGround) {
             _rb.AddForce(new Vector2(0, 1000f));
-
         }
-        else if (x != 0f ) {
+        else if (x != 0f) {
             _animator.SetFloat("Speed", 1.0f);
             _rb.velocity = new Vector2(10 * x, _rb.velocity.y);
-
         }
         else {
             _animator.SetFloat("Speed", 0);
+            _rb.velocity = new Vector2(10 * x, _rb.velocity.y);
         }
 
-    
+
         _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Min(_rb.velocity.y, 18f));
 
         if (isChangeDirection) {
@@ -58,12 +60,15 @@ public class PlayerMovement : MonoBehaviour {
             moveScale.x *= -1;
             transform.localScale = moveScale;
         }
+
+        CheckObstacles();
     }
 
     private void OnDrawGizmos() {
-        if (_sideCheck == null)
-            return;
+        if (_sideCheck == null) return;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(_sideCheck.position, new Vector2(2*_groundCheckRadius,_playerSize.y-_groundCheckRadius));
+
+        Gizmos.DrawWireCube(_sideCheck.position, new Vector2(2 * _groundCheckRadius, _playerSize.y ));
+        
     }
 }

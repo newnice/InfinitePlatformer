@@ -19,7 +19,7 @@ namespace Enemies {
         protected override bool TrySetRequiredWidth(float availableWidth) {
             if (availableWidth / 2 < _minOrbitRadius) return false;
             _orbitRadius = Random.Range(_minOrbitRadius, availableWidth / 2);
-            Debug.Log($"min width = {availableWidth}");
+
             return true;
         }
 
