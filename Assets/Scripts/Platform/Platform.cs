@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Common;
+using UnityEngine;
 
 public class Platform : MonoBehaviour {
     void Awake() {

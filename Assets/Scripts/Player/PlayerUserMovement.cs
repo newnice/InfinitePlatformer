@@ -1,4 +1,5 @@
 ﻿using Common;
+using GameMechanics.Autorun;
 using UnityEngine;
 
 namespace Player {

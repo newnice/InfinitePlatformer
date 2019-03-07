@@ -574,9 +574,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90d161311e45034da9f1ae619fc91cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onGround: 1
-  _groundCheckRadius: 0.25
-  _velocityText: {fileID: 1052912068}
+  onGround: 1
+  groundCheckRadius: 0.25
+  speedScale: 10
+  jumpForce: 1000
+  velocityText: {fileID: 1052912068}
 --- !u!1 &612172345
 GameObject:
   m_ObjectHideFlags: 0
