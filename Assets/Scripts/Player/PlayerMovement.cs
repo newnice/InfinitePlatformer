@@ -9,7 +9,7 @@ namespace Player {
 
         private Rigidbody2D _rb;
         private BoxCollider2D _collider;
-        private Transform _groundCheck, _sideCheck;
+        private Transform _groundCheck;
 
         public bool onGround = true;
         public float groundCheckRadius = 0.25f;
@@ -24,25 +24,33 @@ namespace Player {
             _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
             _groundCheck = transform.Find("GroundCheck");
-            _sideCheck = transform.Find("SideCheck");
             _collider = GetComponent<BoxCollider2D>();
             _playerSize = _collider.size * transform.localScale;
         }
 
         private void CheckCollisions() {
             CheckGround();
-            CheckObstacles();
+            var isObstacles = CheckObstacles();
+            _rb.velocity = new Vector2(!isObstacles ? _rb.velocity.x : 0f, _rb.velocity.y);
             velocityText.text = $"v:{_rb.velocity}";
         }
 
-        private void CheckObstacles() {
-            var colliders = Physics2D.OverlapBoxAll(_sideCheck.position,
-                new Vector2(2 * groundCheckRadius, _playerSize.y - groundCheckRadius),
+        private bool CheckObstacles() {
+            var colliders = Physics2D.OverlapBoxAll(_collider.transform.position + new Vector3(_playerSize.x/2, _playerSize.y/2, 0),
+                new Vector2(2 * groundCheckRadius, _playerSize.y),
                 0);
 
-            var sideCheck = colliders.Any(c => c.gameObject != gameObject && !c.isTrigger);
+            var sideCheck = colliders.Where(c => c.gameObject != gameObject && !c.isTrigger).ToArray();
+            var cp = new ContactPoint2D[5];
+            foreach (var c in sideCheck) {
+                var cpCount = c.GetContacts(cp);
+                for (var i = 0; i < cpCount; i++) {
+                    if (Mathf.Abs(Vector3.Dot(cp[i].normal, Vector3.right)) > 0.9f)
+                        return true;
+                }
+            }
 
-            _rb.velocity = new Vector2(!sideCheck ? _rb.velocity.x : 0f, _rb.velocity.y);
+            return false;
         }
 
         private void CheckGround() {
@@ -55,9 +63,9 @@ namespace Player {
             if (isJump && onGround)
                 _rb.AddForce(new Vector2(0, jumpForce));
             else MoveHorizontally(x);
-            
+
             _rb.velocity = new Vector2(speedScale * x, Mathf.Min(_rb.velocity.y, 18f));
-            
+
             ChangeDirection(isChangeDirection);
             CheckCollisions();
         }
@@ -73,10 +81,12 @@ namespace Player {
         }
 
         private void OnDrawGizmos() {
-            if (_sideCheck == null) return;
+            if (_collider == null) return;
             Gizmos.color = Color.red;
 
-            Gizmos.DrawWireCube(_sideCheck.position, new Vector2(2 * groundCheckRadius, _playerSize.y));
+            var center = _collider.transform.position + new Vector3(_playerSize.x/2, _playerSize.y/2, 0);
+
+            Gizmos.DrawWireCube(center, new Vector2(2 * groundCheckRadius, _playerSize.y));
         }
     }
 }
