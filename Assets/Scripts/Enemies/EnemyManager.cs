@@ -52,6 +52,7 @@ namespace Enemies {
                 for (var i = 0; i < count; i++) {
                     var enemy = Instantiate(conf._enemyPrefab);
                     enemy.gameObject.SetActive(false);
+                    enemy.gameObject.transform.parent = transform;
                     _enemies.Add(enemy);
                 }
 

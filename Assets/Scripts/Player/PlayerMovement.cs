@@ -10,10 +10,13 @@ namespace Player {
         private BoxCollider2D _collider;
         private Transform _groundCheck;
 
-        public bool onGround = true;
-        public float groundCheckRadius = 0.25f;
-        public float speedScale = 10f;
-        public float jumpForce = 1000f;
+        private bool _onGround = true;
+        [SerializeField] private float _groundCheckRadius = 0.25f;
+        [SerializeField] private float _speedScale = 10f;
+        [SerializeField] private float _jumpForce = 1000f;
+
+  
+        public Vector2 CurrentVelocity => _rb.velocity;
 
         private Vector2 _playerSize;
 
@@ -33,8 +36,10 @@ namespace Player {
         }
 
         private bool CheckObstacles() {
-            var colliders = Physics2D.OverlapBoxAll(_collider.transform.position + new Vector3(_playerSize.x/2, _playerSize.y/2, 0),
-                new Vector2(2 * groundCheckRadius, _playerSize.y),
+            var direction = Mathf.Sign(transform.localScale.x);
+            var colliders = Physics2D.OverlapBoxAll(
+                _collider.transform.position + direction * new Vector3(_playerSize.x / 2, _playerSize.y / 2, 0),
+                new Vector2(2 * _groundCheckRadius, _playerSize.y),
                 0);
 
             var sideCheck = colliders.Where(c => c.gameObject != gameObject && !c.isTrigger).ToArray();
@@ -51,17 +56,17 @@ namespace Player {
         }
 
         private void CheckGround() {
-            var colliders = Physics2D.OverlapCircleAll(_groundCheck.position, groundCheckRadius);
-            onGround = colliders.Any(c => c.gameObject != gameObject && !c.isTrigger);
+            var colliders = Physics2D.OverlapCircleAll(_groundCheck.position, _groundCheckRadius);
+            _onGround = colliders.Any(c => c.gameObject != gameObject && !c.isTrigger);
         }
 
 
         public void Move(float x, bool isJump, bool isChangeDirection) {
-            if (isJump && onGround)
-                _rb.AddForce(new Vector2(0, jumpForce));
+            if (isJump && _onGround)
+                _rb.AddForce(new Vector2(0, _jumpForce));
             else MoveHorizontally(x);
 
-            _rb.velocity = new Vector2(speedScale * x, Mathf.Min(_rb.velocity.y, 18f));
+            _rb.velocity = new Vector2(_speedScale * x, Mathf.Min(_rb.velocity.y, 18f));
 
             ChangeDirection(isChangeDirection);
             CheckCollisions();
@@ -80,10 +85,10 @@ namespace Player {
         private void OnDrawGizmos() {
             if (_collider == null) return;
             Gizmos.color = Color.red;
+            var direction = Mathf.Sign(transform.localScale.x);
+            var center = _collider.transform.position + direction*new Vector3(_playerSize.x / 2, _playerSize.y / 2, 0);
 
-            var center = _collider.transform.position + new Vector3(_playerSize.x/2, _playerSize.y/2, 0);
-
-            Gizmos.DrawWireCube(center, new Vector2(2 * groundCheckRadius, _playerSize.y));
+            Gizmos.DrawWireCube(center, new Vector2(2 * _groundCheckRadius, _playerSize.y));
         }
     }
 }

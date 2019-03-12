@@ -51,11 +51,13 @@ namespace Player {
                     _enemyScore++;
                     _hud.UpdateEnemies(_enemyScore);
                 }
-                _rb.AddForce(Vector2.up*_forceScaleOnEnemySquash);
+
+                _rb.AddForce(Vector2.up * _forceScaleOnEnemySquash);
             }
         }
 
         public void KillCharacter() {
+            if (_lives == 0) return;
             _lives--;
             _hud.UpdateLives(_lives);
 

@@ -47,7 +47,12 @@ namespace Enemies {
         public bool Squash() {
             _health--;
             UpdateSize();
+            StartCoroutine("BeforeDie");
             return !IsAlive();
+        }
+
+        private IEnumerator BeforeDie() {
+            yield return new WaitForSeconds(0.5f);
         }
 
         private void UpdateSize() {

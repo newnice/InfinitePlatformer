@@ -536,6 +536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hud: {fileID: 612172350}
+  _verbose: 0
 --- !u!61 &571426685
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -587,10 +588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90d161311e45034da9f1ae619fc91cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onGround: 1
-  groundCheckRadius: 0.25
-  speedScale: 10
-  jumpForce: 1000
+  _groundCheckRadius: 0.25
+  _speedScale: 10
+  _jumpForce: 1000
 --- !u!1 &612172345
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,7 +712,7 @@ MonoBehaviour:
   _scoreText: {fileID: 1459693788}
   _timerText: {fileID: 1052912068}
   _language:
-    Name: Russian
+    Name: English
 --- !u!1 &635612787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,11 +1542,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c85a8300254442a8f3a6358ae78d7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxPoolSize: 0
+  _maxPoolSize: 10
   _spawnConf:
   - _enemyPrefab: {fileID: 2763432709754217716, guid: cbaa8cd346fb8dc4fb4a21773f63e16e,
       type: 3}
-    _spawnChance: 1
+    _spawnChance: 2
   - _enemyPrefab: {fileID: 5616537670431079321, guid: 287b45ee6b96f104abc291acae2a1694,
       type: 3}
     _spawnChance: 1
@@ -1555,7 +1555,7 @@ MonoBehaviour:
     _spawnChance: 1
   - _enemyPrefab: {fileID: 596029978507807894, guid: faaf6c982a306da4c9871873facf3618,
       type: 3}
-    _spawnChance: 1
+    _spawnChance: 2
   - _enemyPrefab: {fileID: 7269792766134000001, guid: edea7211de3a1cd4196224cc8360c61e,
       type: 3}
     _spawnChance: 1
