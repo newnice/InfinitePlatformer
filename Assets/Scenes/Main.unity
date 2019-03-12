@@ -523,6 +523,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &571426684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571426680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7b36a166b94e24a99efb1229cceaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hud: {fileID: 612172350}
 --- !u!61 &571426685
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -578,7 +591,6 @@ MonoBehaviour:
   groundCheckRadius: 0.25
   speedScale: 10
   jumpForce: 1000
-  velocityText: {fileID: 1052912068}
 --- !u!1 &612172345
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,6 +710,7 @@ MonoBehaviour:
   _livesText: {fileID: 635612789}
   _enemiesText: {fileID: 513947766}
   _scoreText: {fileID: 1459693788}
+  _timerText: {fileID: 1052912068}
   _language:
     Name: Russian
 --- !u!1 &635612787
@@ -951,7 +964,7 @@ GameObject:
   - component: {fileID: 1052912069}
   - component: {fileID: 1052912068}
   m_Layer: 5
-  m_Name: velocity
+  m_Name: TimerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1009,7 +1022,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'v:'
+  m_Text: 
 --- !u!222 &1052912069
 CanvasRenderer:
   m_ObjectHideFlags: 0

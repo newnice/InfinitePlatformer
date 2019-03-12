@@ -8,8 +8,9 @@ namespace Player {
         private Rigidbody2D _rb;
 
         private int _lives = GameplayConstants.STARTING_LIVES;
-        private int _distanceScore = 0;
-        private int _enemyScore = 0;
+        public int Lives => _lives;
+        private int _distanceScore;
+        private int _enemyScore;
         [SerializeField] private float _forceScaleOnEnemySquash = 2f;
 
         void Start() {

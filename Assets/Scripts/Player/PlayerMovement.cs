@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Common;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Player {
     public class PlayerMovement : MonoBehaviour {
@@ -17,7 +16,6 @@ namespace Player {
         public float jumpForce = 1000f;
 
         private Vector2 _playerSize;
-        public Text velocityText;
 
 
         private void Start() {
@@ -32,7 +30,6 @@ namespace Player {
             CheckGround();
             var isObstacles = CheckObstacles();
             _rb.velocity = new Vector2(!isObstacles ? _rb.velocity.x : 0f, _rb.velocity.y);
-            velocityText.text = $"v:{_rb.velocity}";
         }
 
         private bool CheckObstacles() {

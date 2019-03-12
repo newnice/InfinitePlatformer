@@ -15,5 +15,5 @@ public class GameplayConstants : ScriptableObject {
     public const int MAXIMUM_SECTIONS = 6;
     public const int SCORE_DISTANCE_MULTIPLIER = 5;
     public const int SCORE_ENEMY_MULTIPLIER = 50;
-    public const int STARTING_LIVES = 100;
+    public const int STARTING_LIVES = 2;
 }

@@ -15,10 +15,8 @@ namespace Player {
         // Start is called before the first frame update
         void Start() {
             _movement = GetComponent<PlayerMovement>();
-            
-            _autoRunMovement = gameObject.AddComponent<AutoRunMovement>();
-            _autoRunMovement.Movement = _movement;
-            _autoRunMovement.Active = _autoRun;
+            _autoRunMovement = GetComponent<AutoRunMovement>();
+            _autoRunMovement.enabled = _autoRun;
         }
 
         // Update is called once per frame
@@ -28,7 +26,7 @@ namespace Player {
         }
 
         private void FixedUpdate() {
-            _autoRunMovement.Active = _autoRun;
+            _autoRunMovement.enabled = _autoRun;
             if (_autoRun) return;
 
             float x = Input.GetAxis("Horizontal");

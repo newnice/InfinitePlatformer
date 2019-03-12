@@ -1,3 +1,4 @@
 UI.LivesText;Lives;
 UI.EnemiesText;Enemies;
 UI.ScoreText;Score;
+UI.TotalTimeText;TotalTime;

@@ -1,3 +1,4 @@
 UI.LivesText;Жизни;
 UI.EnemiesText;Убито;
 UI.ScoreText;Счет;
+UI.TotalTimeText;Общее время;
